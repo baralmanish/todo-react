@@ -40,6 +40,7 @@ export default tseslint.config(
           parser: "typescript"
         }
       ]
-    }
+    },
+    settings: { react: { version: "detect" } }
   }
 );
