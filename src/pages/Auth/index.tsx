@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { URL } from "../../utils/constants";
 import { ILoginForm } from "../../interfaces/auth";
 import { ILocation } from "../../interfaces/common";
-// import AuthService from "../../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 import "./style.scss";
 
@@ -22,8 +22,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-  console.log(">>> searchParams", searchParams.get("newUser"));
 
   useEffect(() => {
     // if the user is already logged in, no need to do it again
@@ -50,10 +48,13 @@ const Login = () => {
 
     setLoading(true);
     setError("");
-    console.log(">>> onFinish values", values);
-    // const response = await AuthService.login(values);
-    // console.log(">>> onFinish response", response);
-    navigate(URL.DASHBOARD);
+    const response = await AuthService.login(values);
+    if (response.status === 200) {
+      navigate(URL.DASHBOARD);
+    } else {
+      setError("Invalid username or password");
+    }
+
     setLoading(false);
   };
 

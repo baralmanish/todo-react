@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { URL } from "../../utils/constants";
 import { ILocation } from "../../interfaces/common";
 import { IRegisterForm } from "../../interfaces/auth";
+import AuthService from "../../services/auth.service";
 import { firstNameRules, lastNameRules, passwordRules, userNameRules } from "./validationRules";
 
 const Register = () => {
@@ -39,10 +40,16 @@ const Register = () => {
   const onFinish = async (values: IRegisterForm) => {
     setLoading(true);
     setError("");
-    console.log(">>> onFinish values", values);
-    // const response = await AuthService.login(values);
-    // console.log(">>> onFinish response", response);
-    navigate(`${URL.LOGIN}?newUser=1`);
+    const response = await AuthService.register(values);
+    if (response.status === 201) {
+      navigate(`${URL.LOGIN}?newUser=1`);
+    } else if (response.status === 400) {
+      setError(response.data.message);
+    } else if (response.status === 422 && response.data?.errors?.length) {
+      setError(response.data.errors[0].msg);
+    } else {
+      setError("There was error in creating an account");
+    }
     setLoading(false);
   };
 
@@ -87,7 +94,7 @@ const Register = () => {
 
         <Form.Item className="form-actions">
           <Button type="primary" htmlType="submit" className="login-form-button" loading={loading} block size="large">
-            {loading ? "Please Wait..." : "Login"}
+            {loading ? "Please Wait..." : "Register"}
           </Button>
         </Form.Item>
 

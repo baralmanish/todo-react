@@ -34,6 +34,10 @@ export const userNameRules = [
   {
     max: 16,
     message: "Username should not exceed 16 characters"
+  },
+  {
+    pattern: /^[a-z][a-z0-9_.]+$/i,
+    message: "Username is not contain space or special characters except _ or . and should not start with number."
   }
 ];
 
@@ -47,8 +51,8 @@ export const passwordRules = [
     message: "Password should have minimum 6 characters"
   },
   {
-    max: 50,
-    message: "Password should not exceed 50 characters"
+    max: 16,
+    message: "Password should not exceed 16 characters"
   },
   {
     pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,16}$/i,
