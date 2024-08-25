@@ -21,13 +21,14 @@ const Register = () => {
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
   useEffect(() => {
-    // if the user is already logged in, no need to do it again
+    // Redirect if user is already logged in
     if (currentUser) {
       setRedirectToReferrer(true);
     }
   }, [currentUser]);
 
   if (redirectToReferrer) {
+    // Redirect to the dashboard or a specific URL from location state
     let redirectUrl = null;
     if (typeof location.state == "string") {
       const state = JSON.parse(location.state);

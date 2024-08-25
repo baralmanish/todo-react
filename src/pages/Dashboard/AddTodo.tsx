@@ -6,19 +6,25 @@ import { addTodo } from "../../redux/action/todoActions";
 import { AppDispatch, RootState } from "../../redux/store";
 
 const AddTodoForm = () => {
-  const [form] = Form.useForm();
-  const dispatch: AppDispatch = useDispatch();
-  const [api, contextHolder] = notification.useNotification();
-  const { status } = useSelector((state: RootState) => state.todo);
+  const [form] = Form.useForm(); // Initialize the Ant Design form
+  const [api, contextHolder] = notification.useNotification(); // Initialize notification API for showing messages
 
+  const dispatch: AppDispatch = useDispatch(); // Get the dispatch function from Redux
+  const { status } = useSelector((state: RootState) => state.todo); // Get the current status from the Redux store
+
+  // Handle form submission
   const onFinish = ({ title }: Partial<ITodo>) => {
+    // Validate input
     if (!title) {
       api.error({
         message: "Error! Please input title to create a todo"
       });
       return;
     }
+    // Dispatch the addTodo action to add the new todo
     dispatch(addTodo(title));
+
+    // Reset the form fields
     form.resetFields();
   };
 
