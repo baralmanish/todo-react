@@ -33,7 +33,7 @@ const responseSuccessHandler = (response: AxiosResponse): AxiosResponse => {
 
 const responseErrorHandler = (error: AxiosError) => {
   console.error(`[response error] [${JSON.stringify(error)}]`);
-  if (error?.response?.status === 401) {
+  if (!error.request.responseURL.includes("/api/auth") && error?.response?.status === 401) {
     const url = URL.LOGIN;
     clearStorage();
     return window.location.replace(url);
