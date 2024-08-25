@@ -6,6 +6,11 @@ export interface IUser {
   token: string;
 }
 
+export interface IUserStore {
+  username: string;
+  token: string;
+}
+
 export interface ILoginForm {
   username: string;
   password: string;

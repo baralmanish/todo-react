@@ -2,6 +2,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import useAuth from "./hooks/useAuth";
 import { URL } from "./utils/constants";
+import AppLayout from "./components/Layout";
 import { ILocation } from "./interfaces/common";
 
 export const PrivateOutlet = () => {
@@ -12,5 +13,9 @@ export const PrivateOutlet = () => {
     return <Navigate to={URL.LOGIN} state={JSON.stringify({ from: location.pathname })} replace />;
   }
 
-  return <Outlet />;
+  return (
+    <AppLayout>
+      <Outlet />
+    </AppLayout>
+  );
 };
