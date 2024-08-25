@@ -28,7 +28,7 @@ const AppLayout: FC<ILayoutProps> = ({ children }) => {
   };
 
   return (
-    <Layout className="h-[100dvh]">
+    <Layout className="min-h-[100dvh]">
       <Header className="sticky top-0 z-[1] flex h-16 w-full items-center justify-between">
         <div className="text-xl font-semibold text-white">TODO APP</div>
         <div onClick={() => logout()} className="cursor-pointer text-red-500 hover:underline">
