@@ -1,0 +1,24 @@
+[
+  {
+    "id": 2,
+    "title": "Todo 2",
+    "isComplete": false,
+    "user": {
+      "id": 1,
+      "firstName": "Correct",
+      "lastName": "User",
+      "username": "correct_user"
+    }
+  },
+  {
+    "id": 1,
+    "title": "Todo 1",
+    "isComplete": false,
+    "user": {
+      "id": 1,
+      "firstName": "Correct",
+      "lastName": "User",
+      "username": "correct_user"
+    }
+  }
+]

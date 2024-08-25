@@ -33,7 +33,9 @@ const ListItem: FC<IListItem> = ({ todo }) => {
         onChange={toggleICompleted}
         defaultChecked={todo.isComplete}
       >
-        <span className={`${todo.isComplete ? "line-through" : ""}`}>{todo.title}</span>
+        <span role="title" className={`todo-title ${todo.isComplete ? "line-through" : ""}`}>
+          {todo.title}
+        </span>
       </Checkbox>
     );
   };
@@ -45,10 +47,11 @@ const ListItem: FC<IListItem> = ({ todo }) => {
           <EditOutlined
             className="cursor-pointer text-blue-700 opacity-50 hover:opacity-90"
             onClick={() => setShow(true)}
+            role="editBtn"
           />
         )}
         <Popconfirm title="Delete the todo?" onConfirm={handleDelete} okText="Yes" cancelText="No">
-          <DeleteOutlined className="cursor-pointer text-red-600 opacity-50 hover:opacity-90" />
+          <DeleteOutlined className="cursor-pointer text-red-600 opacity-50 hover:opacity-90" role="deleteBtn" />
         </Popconfirm>
       </div>
     );
