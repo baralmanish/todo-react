@@ -1,5 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { API_PREFIX } from "../utils/constants";
+
+import { clearStorage } from "../utils/helpers";
+import AuthService from "../services/auth.service";
+import { API_PREFIX, URL } from "../utils/constants";
 
 const API = axios.create({
   baseURL: API_PREFIX,
@@ -9,6 +12,14 @@ const API = axios.create({
 API.defaults.headers.get["Accept"] = "application/json";
 API.defaults.headers.post["Accept"] = "application/json";
 API.defaults.headers.post["Content-Type"] = "application/json";
+
+API.interceptors.request.use((config) => {
+  const user = AuthService.getUser();
+  if (user?.token && config) {
+    config.headers.Authorization = `Bearer ${user.token}`;
+  }
+  return config;
+});
 
 API.interceptors.response.use(
   (response) => responseSuccessHandler(response),
@@ -20,8 +31,14 @@ const responseSuccessHandler = (response: AxiosResponse): AxiosResponse => {
   return response;
 };
 
-const responseErrorHandler = (error: AxiosError): Promise<AxiosError> => {
+const responseErrorHandler = (error: AxiosError) => {
   console.error(`[response error] [${JSON.stringify(error)}]`);
+  if (error?.response?.status === 401) {
+    const url = URL.LOGIN;
+    clearStorage();
+    return window.location.replace(url);
+  }
+
   return Promise.reject(error);
 };
 

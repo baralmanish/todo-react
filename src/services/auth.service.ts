@@ -1,7 +1,7 @@
 import API from "./axios";
 import { DEFAULT_USER_AUTH_KEY } from "../utils/constants";
-import { clearStorage, setInStorage } from "../utils/helpers";
-import { ILoginForm, IRegisterForm } from "../interfaces/auth";
+import { ILoginForm, IRegisterForm, IUserStore } from "../interfaces/auth";
+import { clearStorage, getFromStorage, setInStorage } from "../utils/helpers";
 
 const API_URL = "/api/auth";
 
@@ -33,6 +33,15 @@ class AuthService {
       .catch((error) => {
         return error.response;
       });
+  }
+
+  getUser() {
+    const localUser = getFromStorage(DEFAULT_USER_AUTH_KEY);
+    if (!localUser) {
+      return null;
+    }
+
+    return JSON.parse(localUser) as IUserStore;
   }
 
   logout() {
