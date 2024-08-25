@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "title": "Todo 1",
+  "isComplete": true,
+  "user": {
+    "id": 1,
+    "firstName": "Correct",
+    "lastName": "User",
+    "username": "correct_user"
+  }
+}

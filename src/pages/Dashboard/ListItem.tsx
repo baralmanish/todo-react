@@ -33,7 +33,7 @@ const ListItem: FC<IListItem> = ({ todo }) => {
         onChange={toggleICompleted}
         defaultChecked={todo.isComplete}
       >
-        <span role="title" className={`${todo.isComplete ? "line-through" : ""}`}>
+        <span role="title" className={`todo-title ${todo.isComplete ? "line-through" : ""}`}>
           {todo.title}
         </span>
       </Checkbox>
