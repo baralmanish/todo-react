@@ -16,7 +16,8 @@ const AppLayout: FC<ILayoutProps> = ({ children }) => {
     try {
       if (window.confirm("Are you sure you want to logout?")) {
         AuthService.logout();
-        window.location.reload();
+        // Navigate to login page instead of reloading the page
+        window.location.href = "/login";
       }
     } catch (err: unknown) {
       console.log("error logging out: " + err);

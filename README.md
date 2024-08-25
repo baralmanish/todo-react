@@ -1,50 +1,109 @@
-# React + TypeScript + Vite
+# TODO App Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## TechStacks
 
-Currently, two official plugins are available:
+- Language & Library: React + TypeScript + Vite
+- Linting: Prettier & Eslint
+- Unit Test: Vitest
+- E2E Test: Cypress
+- CSS Libraries: ANT Design and TailwindCSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## Expanding the ESLint configuration
+- Install Node with version v20.13.1 or higher
+- Go to GIT repo [todo-react](https://github.com/baralmanish/todo-react)
+- Clone the repo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname
-    }
-  }
-});
+```bash
+git clone git@github.com:baralmanish/todo-react.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Install node packages
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+```bash
+npm install
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules
-  }
-});
+- Run application
+
+```bash
+npm run dev
+```
+
+## Tests
+
+- Run Unit Test
+
+```bash
+npm run test
+```
+
+- Run E2E Test HeadLess `NOTE: You should run application before running test`
+
+```bash
+npm run test:e2e
+```
+
+- Run E2E Test in Browser `NOTE: You should run application before running test`
+
+```bash
+npm run cy:open
+```
+
+## Useful Commands
+
+- Build application
+
+```bash
+npm run build
+```
+
+- Preview Build application
+
+```bash
+npm run preview
+```
+
+- Run unit tests
+
+```bash
+npm run test
+```
+
+- Prettier Check
+
+```bash
+npm run prettier:check
+```
+
+- Prettier Fix
+
+```bash
+npm run prettier:write
+```
+
+- Lint Check
+
+```bash
+npm run lint:check
+```
+
+- Lint Fix
+
+```bash
+npm run lint:fix
+```
+
+- Setup Husky
+
+```bash
+npm run prepare
+```
+
+## ENV Variables
+
+```
+VITE_APP_NAME="TODO - Track Management"
+VITE_APP_URL=http://localhost:3000
+VITE_API_URL=http://localhost:3001
 ```
