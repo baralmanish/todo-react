@@ -14,7 +14,7 @@
       max-width: 100%;
     }
 
-    .login-form-header {
+    .auth-form-header {
       text-align: center;
       margin-bottom: 20px;
       color: #ffffff;
@@ -38,7 +38,15 @@
         border-radius: 0;
       }
 
+      .ant-alert {
+        margin-bottom: 16px;
+      }
+
       .ant-form-item {
+        .ant-form-item-label {
+          padding-bottom: 2px;
+        }
+
         .ant-input-prefix {
           opacity: 0.6;
         }
@@ -68,6 +76,13 @@
           }
         }
       }
+    }
+
+    .extra-actions {
+      margin-top: 20px;
+      text-align: right;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
     }
   }
 }
